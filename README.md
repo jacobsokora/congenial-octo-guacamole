@@ -12,8 +12,9 @@ Hunts table:
 * id bigint not null auto_increment
 * location varchar(255) not null
 * date datetime not null
+* description varchar(255) null
 
 Clues table:
 * huntId bigint not null fk -> hunts.id
 * clueText varchar(255) not null
-* clueCode varchar(10) not null
+* clueCode varchar(5) not null
