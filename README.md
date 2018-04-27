@@ -15,6 +15,7 @@ Hunts table:
 * description varchar(255) null
 
 Clues table:
+* id bigint not null auto_increment
 * huntId bigint not null fk -> hunts.id
 * clueText varchar(255) not null
 * clueCode varchar(5) not null
