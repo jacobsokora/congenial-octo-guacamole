@@ -31,6 +31,12 @@ switch($choice)
     case "addhunt":
         addHunt();
         break;
+    case "deletehunt":
+        deleteHunt();
+        break;
+    case "addclue":
+        addClue();
+        break;
     default:
         echo "Invalid 'choice' value";
         break;
@@ -53,6 +59,33 @@ function addHunt()
     mysqli_close($con);
     exit();
 }
+
+function deleteHunt(){
+    global $con;
+    $id = $_GET['id'];
+    $sql = "DELETE FROM Hunts WHERE id= $id";
+
+    if ($con->query($sql) === TRUE) {
+        echo "Record deleted successfully";
+    } else {
+        echo "Error deleting record: " . $con->error;
+}
+    mysqli_close($con);
+    exit();
+    
+}
+
+function addClue(){
+    global $con;
+    $sql = "INSERT INTO Clues(huntId, clueText, clueCode) VALUES ('".$_GET['huntId']."', '".$_GET['clueText']."', '".$_GET['clueCode']."')";
+    if ($con->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $con->error;
+    }
+    mysqli_close($con);
+    exit();
+   
  
 //get all scavenger hunts and their corresponding clues in order
 function getHunts()
