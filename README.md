@@ -37,3 +37,28 @@ App should be capable of:
 * Adding clues
 * Removing scavenger hunts
 * Removing clues
+
+Sample JSON for 'gethunts' GET request:
+```
+[
+ {
+  "id":"1",
+  "name":"Hunt1",
+  "description":"A hunt",
+  "location":"Tokyo",
+  "clues":
+  [
+   {"clueText":"CLUE1","clueCode":"ABCD"},
+   {"clueText":"CLUE2","clueCode":"EFGH"}
+  ]
+ },
+ {
+  "id":"5",
+  "name":"Jasmines scavenger hunt",
+  "description":"something something chains and whips",
+  "location":"Jasmines basement",
+  "clues":
+  []
+ }
+]
+```
