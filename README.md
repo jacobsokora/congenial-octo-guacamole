@@ -3,7 +3,7 @@
 ## Entity-Relationship Diagram
 
 ![alt text](https://github.com/jacobsokora/congenial-octo-guacamole/blob/master/ERD.png)
-## Database schema
+## Database Schema
 ### Clues 
 | Field | Type | Null | Default | Key | Auto Increment |
 |:----:|:------:|:------:|:------:|:------:|:-------------:|
@@ -11,6 +11,15 @@
 |huntId | bigint | no | none | none | no |
 | clueText | varchar(255) | no | none | none | no |
 | clueCode | varchar(5) | no | none | none | no |
+
+### Hunts 
+| Field | Type | Null | Default | Key | Auto Increment |
+|:----:|:------:|:------:|:------:|:------:|:-------------:|
+| id | bigint | no | none | primary | yes |
+|location | varchar(255) | no | none | none | no |
+| date | datetime | no | none | none | no |
+| description | varchar(5) | yes | none | none | no |
+
 
 
 
