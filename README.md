@@ -1,5 +1,8 @@
-# congenial-octo-guacamole
-Scavenger hunt app for CS3380
+# Scavenger hunt app for CS3380
+
+## Entity-Relationship Diagram
+
+![alt text](https://github.com/jacobsokora/congenial-octo-guacamole/blob/master/ERD.png)
 
 Users table: (REMOVED)
 * id bigint not null auto_increment
