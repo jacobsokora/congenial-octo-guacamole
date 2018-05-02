@@ -1,4 +1,15 @@
 # Scavenger hunt app for CS3380
+## Team Members
+Jacob Sokora
+
+Connor Penrod
+
+Jasmine Tan
+
+## Project Description
+a description of the application (a paragraph or two that tells what the application does and what purpose it serves).
+the schema for the database (the table definitions).
+
 
 ## Entity-Relationship Diagram
 
@@ -20,6 +31,11 @@
 | date | datetime | no | none | none | no |
 | description | varchar(5) | yes | none | none | no |
 
+## CRUD
+an explanation of where the app is doing create, read, update, and delete (Links to an external site.)Links to an external site. (explain how the app meets the requirements for supporting CRUD)
+
+## Demonstration
+a video demonstration of the application. The URL to the video (on Youtube or other hosting) is to be provided.
 
 PHP SQL service requests should be capable of:
 * Getting all scavenger hunts
