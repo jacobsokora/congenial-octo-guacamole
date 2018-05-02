@@ -21,15 +21,6 @@
 | description | varchar(5) | yes | none | none | no |
 
 
-
-
-Hunts table:
-* id bigint not null auto_increment
-* location varchar(255) not null
-* date datetime not null
-* description varchar(255) null
-
-
 PHP SQL service requests should be capable of:
 * Getting all scavenger hunts
 * Getting each clue for a specific scavenger hunt based on its order number
