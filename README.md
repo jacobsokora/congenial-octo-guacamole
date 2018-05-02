@@ -76,6 +76,14 @@ Sample JSON for 'gethunts' GET request:
   "location":"Jasmines basement",
   "clues":
   []
+ },
+  {
+  "id":"666",
+  "name":"conio's hunt",
+  "description":"bring me morels (not a real scavengar hunt).",
+  "location":"morel mushroom forest",
+  "clues":
+  []
  }
 ]
 ```
