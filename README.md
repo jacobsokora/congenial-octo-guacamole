@@ -38,7 +38,7 @@ Read: App can display hunts and clues
 
 Update: Users can edit clues 
 
-Delete: Useres can delete scavenger hunts 
+Delete: Users can delete scavenger hunts 
 
 ## Demonstration
 a video demonstration of the application. The URL to the video (on Youtube or other hosting) is to be provided.
