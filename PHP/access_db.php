@@ -49,14 +49,20 @@ mysqli_close($con);
 function addHunt()
 {
     global $con;
-    $sql = "INSERT INTO Hunts(name, owner, location, date, description) VALUES ('".$_GET['name']."', '".$_GET['owner']."', '".$_GET['location']."', NOW(), '".$_GET['description']."')";
+    $sql = "INSERT INTO Hunts(name, ownerId, location, date, description) VALUES ('".$_GET['name']."', '".$_GET['ownerId']."', '".$_GET['location']."', NOW(), '".$_GET['description']."')";
     if ($con->query($sql) === TRUE) {
         echo "New record created successfully";
     } 
     else {
         echo "Error: " . $sql . "<br>" . $con->error;
     }
-    
+    $clueArray = array();
+    $clueArray = $_GET['clues'];
+    $arrlength=count($clueArray);
+    for($x=0; $x<$arrlength; $x++){
+        echo "test";
+        addClue($clueArray[$x]);
+    }
     mysqli_close($con);
     exit();
 }
@@ -76,14 +82,16 @@ function deleteHunt(){
     
 }
 
-function addClue(){
+function addClue($text){
     global $con;
-    $sql = "INSERT INTO Clues(huntId, clueText, clueCode) VALUES ('".$_GET['huntId']."', '".$_GET['clueText']."', '".$_GET['clueCode']."')";
+    $code = generateRandomString();
+    $sql = "INSERT INTO Clues(huntId, clueText, clueCode) VALUES ('".$_GET['huntId']."', '$text', '$code')";
     if ($con->query($sql) === TRUE) {
         echo "New record created successfully";
     } else {
         echo "Error: " . $sql . "<br>" . $con->error;
     }
+    
     mysqli_close($con);
     exit();
 }
@@ -130,5 +138,4 @@ function generateRandomString($length = 5) {
     }
     return $randomString;
 }
-
 ?>
