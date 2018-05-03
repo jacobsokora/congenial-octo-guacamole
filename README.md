@@ -27,7 +27,7 @@ the schema for the database (the table definitions).
 | Field | Type | Null | Default | Key | Auto Increment |
 |:----:|:------:|:------:|:------:|:------:|:-------------:|
 | id | bigint | no | none | primary | yes |
-| owner | varchar(36) | no | none | none | yes |
+| owner | varchar(40) | no | none | none | yes |
 |location | varchar(255) | no | none | none | no |
 | date | datetime | no | none | none | no |
 | description | varchar(5) | yes | none | none | no |
