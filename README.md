@@ -87,7 +87,7 @@ Sample JSON for 'gethunts' GET request:
   {
   "id":"666",
   "name":"conio's hunt",
-  "description":"bring me morels (not a real scavengar hunt).",
+  "description":"bring me morels (not a real scavenger hunt).",
   "location":"morel mushroom forest",
   "clues":
   []
