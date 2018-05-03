@@ -1,18 +1,14 @@
 <?php
  
-
 //establish MySQL connection
-
 $con=mysqli_connect("sql103.epizy.com","epiz_21985748","scavengr","epiz_21985748_scavengerdb"); 
 if (mysqli_connect_errno())
 {
   echo "Failed to connect to MySQL. Error: " . mysqli_connect_error();
 }
-
 //check if 'choice' parameter was included in GET request. If not, exit. NOTE: we have to use GET because POST requests are only allowed
 //on infinityfree's paid service
 $choice = null;
-
 if(isset($_GET['choice']))
 {
     $choice = $_GET["choice"];
@@ -22,7 +18,6 @@ else
     echo "Error: no 'choice' parameter found.";
     exit();
 }
-
 //this switch routes all app requests based on 'choice' parameter
 switch($choice)
 {
@@ -43,8 +38,6 @@ switch($choice)
         break;
 }
 mysqli_close($con);
-
-
 //add a scavenger hunt to the database
 function addHunt()
 {
@@ -60,18 +53,15 @@ function addHunt()
     $clueArray = $_GET['clues'];
     $arrlength=count($clueArray);
     for($x=0; $x<$arrlength; $x++){
-        echo "test";
         addClue($clueArray[$x]);
     }
     mysqli_close($con);
     exit();
 }
-
 function deleteHunt(){
     global $con;
     $id = $_GET['id'];
     $sql = "DELETE FROM Hunts WHERE id= $id";
-
     if ($con->query($sql) === TRUE) {
         echo "Record deleted successfully";
     } else {
@@ -81,7 +71,6 @@ function deleteHunt(){
     exit();
     
 }
-
 function addClue($text){
     global $con;
     $code = generateRandomString();
@@ -92,8 +81,8 @@ function addClue($text){
         echo "Error: " . $sql . "<br>" . $con->error;
     }
     
-    mysqli_close($con);
-    exit();
+    //mysqli_close($con);
+    //exit();
 }
  
 //get all scavenger hunts and their corresponding clues in order
@@ -116,7 +105,6 @@ function getHunts()
                 while($clueRow = $clueResult->fetch_object())
                 {
                     $temptempArray = json_decode(json_encode($clueRow), true);
-
                     array_push($tempArray["clues"], $temptempArray);
                 }
             }
@@ -128,7 +116,6 @@ function getHunts()
     mysqli_close($con);
     exit();
 }
-
 function generateRandomString($length = 5) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
