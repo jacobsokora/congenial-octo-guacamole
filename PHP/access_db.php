@@ -49,7 +49,7 @@ mysqli_close($con);
 function addHunt()
 {
     global $con;
-    $sql = "INSERT INTO Hunts(name, location, date, description) VALUES ('".$_GET['name']."', '".$_GET['location']."', NOW(), '".$_GET['description']."')";
+    $sql = "INSERT INTO Hunts(name, owner, location, date, description) VALUES ('".$_GET['name']."', '".$_GET['owner']."', '".$_GET['location']."', NOW(), '".$_GET['description']."')";
     if ($con->query($sql) === TRUE) {
         echo "New record created successfully";
     } 
