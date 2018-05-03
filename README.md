@@ -32,7 +32,13 @@ the schema for the database (the table definitions).
 | description | varchar(5) | yes | none | none | no |
 
 ## CRUD
-an explanation of where the app is doing create, read, update, and delete (Links to an external site.)Links to an external site. (explain how the app meets the requirements for supporting CRUD)
+Create: Users can create scanvenger hunts and clues
+
+Read: App can display hunts and clues
+
+Update: Users can edit clues 
+
+Delete: Useres can delete scavenger hunts 
 
 ## Demonstration
 a video demonstration of the application. The URL to the video (on Youtube or other hosting) is to be provided.
