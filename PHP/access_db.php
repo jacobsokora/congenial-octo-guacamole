@@ -9,7 +9,8 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL. Error: " . mysqli_connect_error();
 }
 
-//check if 'choice' parameter was included in GET request. If not, exit
+//check if 'choice' parameter was included in GET request. If not, exit. NOTE: we have to use GET because POST requests are only allowed
+//on infinityfree's paid service
 $choice = null;
 
 if(isset($_GET['choice']))
@@ -85,13 +86,13 @@ function addClue(){
     }
     mysqli_close($con);
     exit();
-   
+}
  
 //get all scavenger hunts and their corresponding clues in order
 function getHunts()
 {
     global $con;
-    $sql = "SELECT id, name, description, location FROM Hunts WHERE 1";
+    $sql = "SELECT id, name, description, location, ownerId FROM Hunts WHERE 1";
     
     
     if ($result = mysqli_query($con, $sql))
@@ -119,7 +120,5 @@ function getHunts()
     mysqli_close($con);
     exit();
 }
-function DeepCopy($ObjectToCopy) {
-    return unserialize(serialize($ObjectToCopy));
-}
+
 ?>
