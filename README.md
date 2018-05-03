@@ -13,7 +13,7 @@ the schema for the database (the table definitions).
 
 ## Entity-Relationship Diagram
 
-![alt text](https://github.com/jacobsokora/congenial-octo-guacamole/blob/master/ERD.png)
+![alt text](https://github.com/jacobsokora/congenial-octo-guacamole/blob/master/erd.png)
 ## Database Schema
 ### Clues 
 | Field | Type | Null | Default | Key | Auto Increment |
@@ -27,7 +27,7 @@ the schema for the database (the table definitions).
 | Field | Type | Null | Default | Key | Auto Increment |
 |:----:|:------:|:------:|:------:|:------:|:-------------:|
 | id | bigint | no | none | primary | yes |
-| owner | varchar(40) | no | none | none | yes |
+| ownerId | varchar(40) | no | none | none | yes |
 |location | varchar(255) | no | none | none | no |
 | date | datetime | no | none | none | no |
 | description | varchar(5) | yes | none | none | no |
