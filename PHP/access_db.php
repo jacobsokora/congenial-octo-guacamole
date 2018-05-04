@@ -1,7 +1,7 @@
 <?php
-
+ 
 //establish MySQL connection
-$con=mysqli_connect("sql103.epizy.com","epiz_21985748","scavengr","epiz_21985748_scavengerdb");
+$con=mysqli_connect("localhost","user","password","database"); 
 if (mysqli_connect_errno())
 {
   echo "Failed to connect to MySQL. Error: " . mysqli_connect_error();
@@ -30,12 +30,6 @@ switch($choice)
     case "deletehunt":
         deleteHunt();
         break;
-    case "addclue":
-        addClue();
-        break;
-    case "edithunt":
-        editHunt();
-        break;
     default:
         echo "Invalid 'choice' value";
         break;
@@ -45,18 +39,19 @@ mysqli_close($con);
 function addHunt()
 {
     global $con;
-    $sql = "INSERT INTO Hunts(name, ownerId, location, date, description) VALUES ('".$_GET['name']."', '".$_GET['ownerId']."', '".$_GET['location']."', NOW(), '".$_GET['description']."')";
+    $sql = "INSERT INTO hunts(name, ownerId, location, date, description) VALUES ('".$_GET['name']."', '".$_GET['ownerId']."', '".$_GET['location']."', NOW(), '".$_GET['description']."')";
     if ($con->query($sql) === TRUE) {
         echo "New record created successfully";
-    }
+    } 
     else {
         echo "Error: " . $sql . "<br>" . $con->error;
     }
+    $huntId = $con->insert_id;
     $clueArray = array();
     $clueArray = $_GET['clues'];
     $arrlength=count($clueArray);
     for($x=0; $x<$arrlength; $x++){
-        addClue($clueArray[$x]);
+        addClue($huntId, $clueArray[$x]);
     }
     mysqli_close($con);
     exit();
@@ -64,61 +59,47 @@ function addHunt()
 function deleteHunt(){
     global $con;
     $id = $_GET['id'];
-    $sql = "DELETE FROM Hunts WHERE id= $id";
+    $sql = "DELETE FROM clues WHERE huntId=$id";
     if ($con->query($sql) === TRUE) {
         echo "Record deleted successfully";
     } else {
         echo "Error deleting record: " . $con->error;
-}
+    }
+    $sql = "DELETE FROM hunts WHERE id=$id";
+    if($con->query($sql) === TRUE) {
+        echo "Record deleted successfully";
+    } else {
+        echo "Error deleting record: " . $con->error;
+    }
     mysqli_close($con);
     exit();
-
 }
-function addClue($text){
+function addClue($huntId, $text){
     global $con;
     $code = generateRandomString();
-    $sql = "INSERT INTO Clues(huntId, clueText, clueCode) VALUES ('".$_GET['huntId']."', '$text', '$code')";
+    $sql = "INSERT INTO clues(huntId, clueText, clueCode) VALUES ('$huntId', '$text', '$code')";
     if ($con->query($sql) === TRUE) {
         echo "New record created successfully";
     } else {
         echo "Error: " . $sql . "<br>" . $con->error;
     }
-
-    //mysqli_close($con);
-    //exit();
 }
-
-function editHunt(){
-  global $con;
-  $name = $_GET['name'];
-  $id = $_GET['id'];
-  $sql = "UPDATE Hunts SET name ='$name' WHERE id = '$id'";
-  if ($con->query($sql) === TRUE) {
-      echo "New record updated successfully";
-  }
-  else {
-      echo "Error: " . $sql . "<br>" . $con->error;
-  }
-
-  mysqli_close($con);
-  exit();
-}
-
+ 
 //get all scavenger hunts and their corresponding clues in order
 function getHunts()
 {
     global $con;
-    $sql = "SELECT id, name, description, location, ownerId FROM Hunts WHERE 1";
-
-
+    $sql = "SELECT id, name, description, location, ownerId FROM hunts WHERE 1";
+    
+    
     if ($result = mysqli_query($con, $sql))
     {
         $resultArray = array();
         while($row = $result->fetch_object())
         {
             $tempArray = json_decode(json_encode($row), true);
-            if($clueResult = mysqli_query($con, "SELECT clueText, clueCode FROM Clues WHERE huntId = " . $row->id . " ORDER BY Clues.id ASC"))
-            {
+            if($clueResult = mysqli_query($con, "SELECT clueText, clueCode FROM clues WHERE huntId = " . $row->id . " ORDER BY clues.id ASC"))
+            {    
                 $temptempArray = array();
                 $tempArray["clues"] = array();
                 while($clueRow = $clueResult->fetch_object())
@@ -127,7 +108,7 @@ function getHunts()
                     array_push($tempArray["clues"], $temptempArray);
                 }
             }
-
+            
             array_push($resultArray, $tempArray);
         }
         echo json_encode($resultArray);
