@@ -38,7 +38,7 @@ Create: Users can create scanvenger hunts and clues
 
 Read: App can display hunts and clues
 
-Update: Users can hunt name 
+Update: Users can edit hunt name 
 
 Delete: Users can delete scavenger hunts 
 
