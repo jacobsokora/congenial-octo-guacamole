@@ -7,9 +7,11 @@ Connor Penrod
 Jasmine Tan
 
 ## Project Description
-a description of the application (a paragraph or two that tells what the application does and what purpose it serves).
-the schema for the database (the table definitions).
+# Meet ScavengeQR, the world's first comprehensive scavenger hunt management and information system.
 
+**We're dragging scavenger hunting into the 21st century with state-of-the-art quick response code technology and a socially-engineered mobile eSport paradigm.**
+
+**With the ability to construct, search, and participate in hunts from around the world, ScavengeQR is leading the world in immersive scavenger hunting experiences.**
 
 ## Entity-Relationship Diagram
 
@@ -38,7 +40,7 @@ Create: Users can create scanvenger hunts and clues
 
 Read: App can display hunts and clues
 
-Update: Users can edit hunt name 
+Update: Users can edit clues 
 
 Delete: Users can delete scavenger hunts 
 
