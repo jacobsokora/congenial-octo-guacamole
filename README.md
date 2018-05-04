@@ -28,6 +28,7 @@ the schema for the database (the table definitions).
 |:----:|:------:|:------:|:------:|:------:|:-------------:|
 | id | bigint | no | none | primary | yes |
 | ownerId | varchar(40) | no | none | none | yes |
+| name | varchar(64) | no | none | primary | yes |
 |location | varchar(255) | no | none | none | no |
 | date | datetime | no | none | none | no |
 | description | varchar(5) | yes | none | none | no |
