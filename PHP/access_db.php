@@ -30,6 +30,9 @@ switch($choice)
     case "deletehunt":
         deleteHunt();
         break;
+    case "edithuntname":
+        editHuntName();
+        break;
     default:
         echo "Invalid 'choice' value";
         break;
@@ -116,6 +119,23 @@ function getHunts()
     mysqli_close($con);
     exit();
 }
+
+function editHuntName()
+{
+    global $con;
+    $sql = "UPDATE hunts SET name = " . $_GET["name"] " WHERE id = " . $_GET{"id");
+    if ($con->query($sql) === TRUE) 
+    {
+        echo "New record created successfully.\n";
+    } 
+    else 
+    {
+        echo "Error: " . $sql . "<br>" . $con->error;
+    }
+    mysqli_close($con);
+    exit();
+}
+
 function generateRandomString($length = 5) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
