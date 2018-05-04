@@ -1,7 +1,7 @@
 <?php
- 
+
 //establish MySQL connection
-$con=mysqli_connect("sql103.epizy.com","epiz_21985748","scavengr","epiz_21985748_scavengerdb"); 
+$con=mysqli_connect("sql103.epizy.com","epiz_21985748","scavengr","epiz_21985748_scavengerdb");
 if (mysqli_connect_errno())
 {
   echo "Failed to connect to MySQL. Error: " . mysqli_connect_error();
@@ -33,6 +33,9 @@ switch($choice)
     case "addclue":
         addClue();
         break;
+    case "edithunt":
+        editHunt();
+        break;
     default:
         echo "Invalid 'choice' value";
         break;
@@ -45,7 +48,7 @@ function addHunt()
     $sql = "INSERT INTO Hunts(name, ownerId, location, date, description) VALUES ('".$_GET['name']."', '".$_GET['ownerId']."', '".$_GET['location']."', NOW(), '".$_GET['description']."')";
     if ($con->query($sql) === TRUE) {
         echo "New record created successfully";
-    } 
+    }
     else {
         echo "Error: " . $sql . "<br>" . $con->error;
     }
@@ -69,7 +72,7 @@ function deleteHunt(){
 }
     mysqli_close($con);
     exit();
-    
+
 }
 function addClue($text){
     global $con;
@@ -80,18 +83,34 @@ function addClue($text){
     } else {
         echo "Error: " . $sql . "<br>" . $con->error;
     }
-    
+
     //mysqli_close($con);
     //exit();
 }
- 
+
+function editHunt(){
+  global $con;
+  $name = $_GET['name'];
+  $id = $_GET['id'];
+  $sql = "UPDATE Hunts SET name ='$name' WHERE id = '$id'";
+  if ($con->query($sql) === TRUE) {
+      echo "New record updated successfully";
+  }
+  else {
+      echo "Error: " . $sql . "<br>" . $con->error;
+  }
+
+  mysqli_close($con);
+  exit();
+}
+
 //get all scavenger hunts and their corresponding clues in order
 function getHunts()
 {
     global $con;
     $sql = "SELECT id, name, description, location, ownerId FROM Hunts WHERE 1";
-    
-    
+
+
     if ($result = mysqli_query($con, $sql))
     {
         $resultArray = array();
@@ -99,7 +118,7 @@ function getHunts()
         {
             $tempArray = json_decode(json_encode($row), true);
             if($clueResult = mysqli_query($con, "SELECT clueText, clueCode FROM Clues WHERE huntId = " . $row->id . " ORDER BY Clues.id ASC"))
-            {    
+            {
                 $temptempArray = array();
                 $tempArray["clues"] = array();
                 while($clueRow = $clueResult->fetch_object())
@@ -108,7 +127,7 @@ function getHunts()
                     array_push($tempArray["clues"], $temptempArray);
                 }
             }
-            
+
             array_push($resultArray, $tempArray);
         }
         echo json_encode($resultArray);
