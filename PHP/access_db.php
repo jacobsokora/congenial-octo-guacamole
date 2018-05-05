@@ -123,7 +123,7 @@ function getHunts()
 function editHuntName()
 {
     global $con;
-    $sql = "UPDATE hunts SET name = " . $_GET["name"] " WHERE id = " . $_GET{"id");
+    $sql = "UPDATE hunts SET name = '" . $_GET["name"] . "' WHERE id = " . $_GET["id"];
     if ($con->query($sql) === TRUE) 
     {
         echo "New record created successfully.\n";
